@@ -1,0 +1,19 @@
+.PageContent {
+  min-height: calc(100vh - 60px);
+
+  &__wrapper {
+    box-sizing: border-box;
+    width: 100vw;
+    max-width: 1200px;
+    padding: 20px;
+    margin: 0 auto;
+  }
+}
+
+@media(max-width: 520px) {
+  .PageContent {
+    &__wrapper {
+      padding: 10px;
+    }
+  }
+}

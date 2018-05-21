@@ -1,0 +1,17 @@
+.Loader {
+  z-index: 999;
+  position: fixed;
+  top: calc(50% - 100px);
+  left: calc(50% - 100px);
+
+  &__pokeball {
+    stroke-width: 2px;
+    animation: spin 1s ease-out infinite;
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform:rotate(360deg);
+  }
+}

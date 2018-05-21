@@ -1,0 +1,51 @@
+.Pokemon {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  margin-bottom: 30px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &__image {
+    width: 100%;
+    max-width: 140px;
+    height: 140px;
+    display: flex;
+    border-radius: 100px;
+    background-color: #fff;
+    box-shadow: 0 0 15px 0 rgba(#ecf0f1, 0.4);
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    border: 4px solid #fff;
+    transition: all 200ms ease-out;
+  }
+
+  &__name {
+    font-size: 18px;
+    font-weight: 200;
+    color: #34495e;
+    text-transform: capitalize;
+  }
+
+  &:hover {
+    .Pokemon {
+      &__image {
+        border: 4px solid #e74c3c;
+        box-shadow: 0 0 15px 0 rgba(#7f8c8d, 0.4);
+        transform: scale(1.1);
+      }
+      &__name {
+        font-weight: 400;
+        color: #e74c3c;
+      }
+    }
+
+  }
+}
+
+@media(max-width: 520px) {
+  .Pokemon {
+  }
+}

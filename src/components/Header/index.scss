@@ -1,0 +1,41 @@
+.Header {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #c0392b;
+  height: 80px;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  color: white;
+  border-bottom: 11px solid #222;
+
+  &:after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 8px solid #222;
+    border-radius: 40px;
+    bottom: -23px;
+    position: absolute;
+  }
+
+  &__title {
+    font-size: 1.8em;
+    font-weight: 600;
+    margin: 0;
+
+    a {
+      color: #fff;
+      letter-spacing: 2px;
+
+      &:hover {
+        text-decoration: none;
+        letter-spacing: 5px;
+      }
+    }
+  }
+}
