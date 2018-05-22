@@ -1,0 +1,43 @@
+.Pagination {
+  width: 100%;
+  max-width: 520px;
+  margin: 10px auto;
+  text-align: center;
+  overflow-wrap: break-word;
+  padding: 10px;
+
+  &__link {
+    outline: none;
+    cursor: pointer;
+    font-family: 'Nunito';
+    font-size: 16px;
+    font-weight: 400;
+    width: 30px;
+    padding: 0;
+    margin: 7px;
+    line-height: 30px;
+    border-radius: 30px;
+    border: 0;
+    display: inline-block;
+    box-shadow: 0 0 15px 0 rgba(#ecf0f1, 0.4);
+
+    &:hover {
+      background-color: #e74c3c;
+      color: #fff;
+      box-shadow: 0 0 15px 0 rgba(#7f8c8d, 0.4);
+      transform: scale(1.1);
+    }
+
+    &:active {
+      background-color: #c0392b;
+      transform: scale(1);
+    }
+
+    &--current {
+      background-color: #c0392b;
+      color: #fff;
+      box-shadow: 0 0 15px 0 rgba(#7f8c8d, 0.4);
+      transform: scale(1.1);
+    }
+  }
+}

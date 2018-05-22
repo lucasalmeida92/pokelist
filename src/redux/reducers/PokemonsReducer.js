@@ -14,6 +14,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoading: true,
+        currentPage: action.currentPage,
         list: []
       }
     case actionTypes.REQUEST_POKEMONS_SUCCESS:
@@ -24,7 +25,6 @@ export default (state = initialState, action) => {
         nextPageApi: action.nextPageApi,
         total: action.total,
         isLoading: false,
-        currentPage: action.currentPage,
         error: null
       }
     case actionTypes.REQUEST_POKEMONS_ERROR:
