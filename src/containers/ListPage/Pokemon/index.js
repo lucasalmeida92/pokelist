@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import FA from 'react-fontawesome';
 import './index.scss';
 
 class Pokemon extends Component {
@@ -12,12 +11,12 @@ class Pokemon extends Component {
     let pokemonId = this.props.pokemonId;
 
     return (
-      <div className="Pokemon">
+      <a className="col col--25 Pokemon" href={`/#/pokemon/${pokemonId}`} title={pokemon.name}>
         <div className="Pokemon__image">
           <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`} alt={pokemon.name} />
         </div>
         <h3 className="Pokemon__name">{pokemon.name}</h3>
-      </div>
+      </a>
     );
   }
 }

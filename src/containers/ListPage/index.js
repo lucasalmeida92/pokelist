@@ -1,66 +1,74 @@
 import React, { Component } from 'react';
-import request from '../../utils/request';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Pokemon from './Pokemon';
 import Loader from '../../components/Loader';
+import Pagination from './Pagination';
 import './index.scss';
+import { fetchPokemons } from '../../redux/actions/PokemonsActions';
+
+const mapStateToProps = (state, props) => ({
+    pokemons: state.pokemons,
+});
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    fetchPokemons
+  }, dispatch);
+};
 
 class ListPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    this.state = {
-      pokemons: [],
-      amountPerPage: 20,
-      page: 1,
-      isLoading: false,
-    };
+    this.handlePageClick = this.handlePageClick.bind(this);
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
-    const offset = this.state.amountPerPage*(this.state.page-1);
-    const pokemonsUrl = `https://pokeapi.co/api/v2/pokemon?limit=${this.state.amountPerPage}&offset=${offset}`;
-    request(pokemonsUrl)
-      .then(json => {
-        let pokemons = [...json.results]
-          .map((pokemon, index) => {
-            const pokemonUrlParts = pokemon.url.split('/');
-            const pokemonId = pokemonUrlParts[pokemonUrlParts.length-2];
-            return(
-              <a className="col col--25" href={`/#/pokemon/${pokemonId}`} title={pokemon.name}>
-                <Pokemon key={index} pokemon={pokemon} pokemonId={pokemonId} />
-              </a>
-            )
-          });
-        this.setState({
-          previousPageApi: json.previous,
-          nextPageApi: json.next,
-          totalPokemon: json.count,
-          pokemons: pokemons,
-          isLoading: false
-        });
-      }).catch(error => {
-        console.log(error);
-      });
+    const { amountPerPage, page } = this.props;
+    this.props.fetchPokemons(amountPerPage, page);
+  }
+
+  handlePageClick(page) {
+    this.props.fetchPokemons(this.props.amountPerPage, page);
   }
 
   render() {
+    const pokemons = this.props.pokemons;
+    let pokemonsList = null;
+
+    if(pokemons.list.length > 0) {
+      pokemonsList = pokemons.list
+        .map((pokemon, index) => {
+          const pokemonUrlParts = pokemon.url.split('/');
+          const pokemonId = pokemonUrlParts[pokemonUrlParts.length-2];
+          return(
+            <Pokemon key={index} pokemon={pokemon} pokemonId={pokemonId} />
+          )
+        });
+    } else {
+      pokemonsList = <p>No pokémon found. Please try again later.</p>;
+    }
+
     return (
       <div className="ListPage">
         <h2>Pokémons</h2>
         <p className="ListPage__instruction">Click on a pokémon to see it's details.</p>
         <div className="row ListPage__pokemons">
           {
-            this.state.isLoading
+            pokemons.isLoading
               ? <Loader />
-              : (this.state.pokemons.length
-                ? this.state.pokemons
-                : <p>No pokémon found. Please try again later.</p>)
+              : pokemonsList
           }
         </div>
+        <Pagination
+          currentPage={pokemons.currentPage}
+          amountPerPage={pokemons.amountPerPage}
+          total={pokemons.total}
+          onPageClick={this.handlePageClick} />
       </div>
     );
   }
 }
 
-export default ListPage;
+export default connect(mapStateToProps, mapDispatchToProps)(ListPage);
