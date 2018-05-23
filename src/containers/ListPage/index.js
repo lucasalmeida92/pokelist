@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { fetchPokemons } from '../../redux/actions/PokemonsActions';
 import Pokemon from './Pokemon';
 import Loader from '../../components/Loader';
 import Pagination from './Pagination';
 import './index.scss';
-import { fetchPokemons } from '../../redux/actions/PokemonsActions';
 
 const mapStateToProps = (state, props) => ({
     pokemons: state.pokemons,

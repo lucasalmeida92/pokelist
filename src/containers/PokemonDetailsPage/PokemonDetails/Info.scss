@@ -1,0 +1,21 @@
+.Info {
+  display: inline-block;
+  background-color: #fff;
+  padding: 9px 15px;
+  margin: 10px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,.2);
+
+  &__title {
+    padding: 3px 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.7rem;
+  }
+  &__content {
+    padding: 8px;
+    font-weight: 200;
+    font-size: 1.3rem;
+  }
+}

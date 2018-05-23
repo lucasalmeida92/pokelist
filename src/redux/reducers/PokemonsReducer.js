@@ -5,7 +5,8 @@ const initialState = {
   error: false,
   list: [],
   amountPerPage: 20,
-  currentPage: 0
+  currentPage: 0,
+  selectedPokemon: null
 };
 
 export default (state = initialState, action) => {
@@ -36,7 +37,34 @@ export default (state = initialState, action) => {
     case actionTypes.SELECT_POKEMON:
       return {
         ...state,
-        currentPokemon: state.list.find(pokemon => pokemon.name === action.currentPokemon)
+        selectedPokemon: action.selectedPokemon
+      }
+    case actionTypes.REQUEST_POKEMON_DETAILS:
+      return {
+        ...state,
+        selectedPokemon: {
+          ...state.selectedPokemon,
+          isLoading: true,
+        }
+      }
+    case actionTypes.REQUEST_POKEMON_DETAILS_SUCCESS:
+      return {
+        ...state,
+        selectedPokemon: {
+          ...state.selectedPokemon,
+          ...action.details,
+          description: action.description,
+          isLoading: false,
+        }
+      }
+    case actionTypes.REQUEST_POKEMON_DETAILS_ERROR:
+      return {
+        ...state,
+        selectedPokemon: {
+          ...state.selectedPokemon,
+          isLoading: false,
+          error: action.error
+        }
       }
     default:
       return state

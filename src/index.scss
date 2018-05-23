@@ -179,11 +179,27 @@ input[type=submit] {
 .col {
   flex-basis: 100%;
 
+  &--60 {
+    flex-basis: calc(60% - 10px);
+    margin-right: 10px;
+    &:last-child {
+      flex-basis: 60%;
+    }
+  }
+
   &--50 {
     flex-basis: calc(50% - 10px);
     margin-right: 10px;
     &:last-child {
       flex-basis: 50%;
+    }
+  }
+
+  &--40 {
+    flex-basis: calc(40% - 10px);
+    margin-right: 10px;
+    &:last-child {
+      flex-basis: 40%;
     }
   }
 
@@ -210,7 +226,9 @@ input[type=submit] {
 
 @media(max-width: 520px) {
   .col {
+    &--60,
     &--50,
+    &--40,
     &--33,
     &--25 {
       flex-basis: 100% !important;

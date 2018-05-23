@@ -1,9 +1,9 @@
 .PageContent {
-  min-height: calc(100vh - 60px);
+  min-height: calc(100% - 80px);
 
   &__wrapper {
     box-sizing: border-box;
-    width: 100vw;
+    width: 100%;
     max-width: 1200px;
     padding: 20px;
     margin: 0 auto;
